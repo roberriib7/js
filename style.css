@@ -1,0 +1,8 @@
+.tarjeta{
+    background-color: grey;
+}
+.contenedor{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}

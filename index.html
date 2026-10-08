@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="contenedor"></div>
+
+    <script>
+        const productos = [
+            { id: 1, nombre: "Iphone", descripcion: "Este es un movil nuevo de marca Iphone", precio: 29.99, disponible: true },
+            { id: 2, nombre: "Iphone 12", descripcion: "Este es un movil nuevo de marca Iphone", precio: 39.99, disponible: true },
+            { id: 3, nombre: "Iphone 13", descripcion: "Este es un movil nuevo de marca Iphone", precio: 19.99, disponible: true },
+            { id: 4, nombre: "Iphone 14", descripcion: "Este es un movil nuevo de marca Iphone", precio: 79.99, disponible: true },
+            { id: 5, nombre: "Iphone 16", descripcion: "Este es un movil nuevo de marca Iphone", precio: 69.99, disponible: false },
+            { id: 6, nombre: "Iphone X", descripcion: "Este es un movil nuevo de marca Iphone", precio: 29.99, disponible: false },
+            { id: 7, nombre: "Iphone", descripcion: "Este es un movil nuevo de marca Iphone", precio: 49.99, disponible: true }
+        ];
+
+        const contenedor = document.querySelector('.contenedor');
+
+        productos.forEach(({ id, nombre, descripcion, precio, disponible }) => {
+            const tarjeta = document.createElement('article');
+            tarjeta.classList.add('tarjeta');
+
+            tarjeta.innerHTML = `
+                <h3>${nombre}</h3>
+                <p>${descripcion}</p>
+                <p>${precio} €</p>
+                ${disponible} ? <button> Agregar al carro </button> : <p> No quedan </p>
+            `;
+
+            contenedor.appendChild(tarjeta);
+        });
+
+
+        const filtrados = productos.filter(producto => producto.disponible === true);
+        console.log(filtrados)
+    </script>
+</body>
+
+</html>
