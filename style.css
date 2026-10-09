@@ -1,8 +1,67 @@
-.tarjeta{
-    background-color: grey;
+:root{
+    --fuente: Verdana, Geneva, Tahoma, sans-serif;
 }
-.contenedor{
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.contenedor-moviles, .contenedor-tablets, .contenedor-pcs{
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
+    padding: 2rem;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.tarjeta{
+    background-color: rgb(233, 231, 231);
+    padding: 1rem;
+    border-radius: 8px;
+    width: 15%;
+    height: auto;
+    position: relative;
+}
+
+.tarjeta h3{
+    font-family: var(--fuente);
+    text-align: center;
+}
+
+.tarjeta p{
+    font-family: var(--fuente);
+    text-align: center;
+}
+
+.tarjeta button{
+    background-color: rgb(181, 240, 181);
+    border: solid green 2px;
+    border-radius: 8px;
+    color: rgb(18, 63, 14);
+    height: 3rem;
+}
+
+.button-flex{
+    display: flex;
+    justify-content: center;
+}
+
+h2{
+    font-family: var(--fuente);
+    text-align: center;
+}
+
+.descuento{
+    position: absolute;
+    background-color: red;
+    color: white;
+    top: -10px;
+    right: -10px;
+    font-family: var(--fuente);
+    height: 2rem;
+    align-items: center;
+    display: flex;
+    border-radius: 5px;
 }
