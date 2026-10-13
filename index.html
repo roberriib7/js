@@ -9,31 +9,31 @@
 </head>
 
 <body>
-    
+
     <h2>Moviles</h2>
     <section class="contenedor-moviles">
         <script>
-        const ivaMovil = 1.21;
+            const ivaMovil = 1.21;
 
-        const productos = [
-            { id: 1, nombre: "Iphone", descripcion: "Este es un movil nuevo de marca Iphone", precio: 29.99, disponible: true, descuento: true },
-            { id: 2, nombre: "Iphone 12", descripcion: "Este es un movil nuevo de marca Iphone", precio: 39.99, disponible: true , descuento: false},
-            { id: 3, nombre: "Iphone 13", descripcion: "Este es un movil nuevo de marca Iphone", precio: 19.99, disponible: true , descuento: true},
-            { id: 4, nombre: "Iphone 14", descripcion: "Este es un movil nuevo de marca Iphone", precio: 79.99, disponible: true , descuento: true},
-            { id: 5, nombre: "Iphone 16", descripcion: "Este es un movil nuevo de marca Iphone", precio: 69.99, disponible: false , descuento: false},
-            { id: 6, nombre: "Iphone X", descripcion: "Este es un movil nuevo de marca Iphone", precio: 29.99, disponible: false , descuento: false},
-            { id: 7, nombre: "Iphone", descripcion: "Este es un movil nuevo de marca Iphone", precio: 49.99, disponible: true , descuento: true}
-        ];
-        
-        const productosConIva = productos.map(movil => ({...movil, precioConIva: (movil.precio*ivaMovil).toFixed(2)}));
+            const productos = [
+                { id: 1, nombre: "Iphone", descripcion: "Este es un movil nuevo de marca Iphone", precio: 29.99, disponible: true, descuento: true },
+                { id: 2, nombre: "Iphone 12", descripcion: "Este es un movil nuevo de marca Iphone", precio: 39.99, disponible: true, descuento: false },
+                { id: 3, nombre: "Iphone 13", descripcion: "Este es un movil nuevo de marca Iphone", precio: 19.99, disponible: true, descuento: true },
+                { id: 4, nombre: "Iphone 14", descripcion: "Este es un movil nuevo de marca Iphone", precio: 79.99, disponible: true, descuento: true },
+                { id: 5, nombre: "Iphone 16", descripcion: "Este es un movil nuevo de marca Iphone", precio: 69.99, disponible: false, descuento: false },
+                { id: 6, nombre: "Iphone X", descripcion: "Este es un movil nuevo de marca Iphone", precio: 29.99, disponible: false, descuento: false },
+                { id: 7, nombre: "Iphone", descripcion: "Este es un movil nuevo de marca Iphone", precio: 49.99, disponible: true, descuento: true }
+            ];
 
-        const contenedor = document.querySelector('.contenedor-moviles');
+            const productosConIva = productos.map(movil => ({ ...movil, precioConIva: (movil.precio * ivaMovil).toFixed(2) }));
 
-        productosConIva.forEach(({ id, nombre, descripcion, precio, disponible, precioConIva, descuento }) => {
-            const tarjeta = document.createElement('article');
-            tarjeta.classList.add('tarjeta');
+            const contenedor = document.querySelector('.contenedor-moviles');
 
-            tarjeta.innerHTML = `
+            productosConIva.forEach(({ id, nombre, descripcion, precio, disponible, precioConIva, descuento }) => {
+                const tarjeta = document.createElement('article');
+                tarjeta.classList.add('tarjeta');
+
+                tarjeta.innerHTML = `
                 <h3>${nombre}</h3>
                 <p>${descripcion}</p>
                 <p>${precio} € / ${precioConIva}</p>
@@ -41,34 +41,34 @@
                 ${descuento ? '<div class="descuento">¡Descuento!</div>' : '<div></div>'}
             `;
 
-            contenedor.appendChild(tarjeta);
-        });
+                contenedor.appendChild(tarjeta);
+            });
 
-    </script>
+        </script>
     </section>
 
     <h2>Tablets</h2>
     <section class="contenedor-tablets">
         <script>
-        
-        const ivaTablet = 0.21;
 
-        const tablets = [
-            { id: 1, nombre: "iPad", descripcion: "Tablet Apple con pantalla de alta resolución", precio: 399.99, disponible: true , descuento: true},
-            { id: 2, nombre: "Samsung Galaxy Tab", descripcion: "Tablet Samsung ligera y potente", precio: 329.99, disponible: true , descuento: true},
-            { id: 3, nombre: "iPad Air", descripcion: "Tablet Apple con gran rendimiento", precio: 599.99, disponible: true , descuento: false},
-            { id: 4, nombre: "Lenovo Tab", descripcion: "Tablet Lenovo ideal para el día a día", precio: 199.99, disponible: false , descuento: false}
-        ];
+            const ivaTablet = 0.21;
 
-        const tabletsConIva = tablets.map(tablet=> ({...tablet, tabletConIva: (tablet.precio*ivaTablet).toFixed(2)}));
+            const tablets = [
+                { id: 1, nombre: "iPad", descripcion: "Tablet Apple con pantalla de alta resolución", precio: 399.99, disponible: true, descuento: true },
+                { id: 2, nombre: "Samsung Galaxy Tab", descripcion: "Tablet Samsung ligera y potente", precio: 329.99, disponible: true, descuento: true },
+                { id: 3, nombre: "iPad Air", descripcion: "Tablet Apple con gran rendimiento", precio: 599.99, disponible: true, descuento: false },
+                { id: 4, nombre: "Lenovo Tab", descripcion: "Tablet Lenovo ideal para el día a día", precio: 199.99, disponible: false, descuento: false }
+            ];
 
-        const contTablets = document.querySelector('.contenedor-tablets');
+            const tabletsConIva = tablets.map(tablet => ({ ...tablet, tabletConIva: (tablet.precio * ivaTablet).toFixed(2) }));
 
-        tabletsConIva.forEach(({ id, nombre, descripcion, precio, disponible, tabletConIva, descuento}) => {
-            const tarjeta = document.createElement('article');
-            tarjeta.classList.add('tarjeta');
+            const contTablets = document.querySelector('.contenedor-tablets');
 
-            tarjeta.innerHTML = `
+            tabletsConIva.forEach(({ id, nombre, descripcion, precio, disponible, tabletConIva, descuento }) => {
+                const tarjeta = document.createElement('article');
+                tarjeta.classList.add('tarjeta');
+
+                tarjeta.innerHTML = `
                 <h3>${nombre}</h3>
                 <p>${descripcion}</p>
                 <p>${precio} € / ${tabletConIva}</p>
@@ -76,31 +76,31 @@
                 ${descuento ? '<div class="descuento">¡Descuento!</div>' : '<div></div>'}
             `;
 
-            contTablets.appendChild(tarjeta);
-        });
-    </script>
+                contTablets.appendChild(tarjeta);
+            });
+        </script>
     </section>
 
     <h2>Ordenadores</h2>
     <section class="contenedor-pcs">
         <script>
-        const ivaPc = 1.21;
-        const pcs = [
-            { id: 1, nombre: "PC Gamer", descripcion: "Ordenador de sobremesa para juegos", precio: 1299.99, disponible: true , descuento: true},
-            { id: 2, nombre: "PC de oficina", descripcion: "Ordenador rápido para trabajar y estudiar", precio: 649.99, disponible: true , descuento: false},
-            { id: 3, nombre: "PC compacto", descripcion: "Ordenador compacto para espacios pequeños", precio: 499.99, disponible: true , descuento: true},
-            { id: 4, nombre: "PC Creator", descripcion: "Ordenador de alto rendimiento para creación de contenido", precio: 1899.99, disponible: false , descuento: false}
-        ];
+            const ivaPc = 1.21;
+            const pcs = [
+                { id: 1, nombre: "PC Gamer", descripcion: "Ordenador de sobremesa para juegos", precio: 1299.99, disponible: true, descuento: true },
+                { id: 2, nombre: "PC de oficina", descripcion: "Ordenador rápido para trabajar y estudiar", precio: 649.99, disponible: true, descuento: false },
+                { id: 3, nombre: "PC compacto", descripcion: "Ordenador compacto para espacios pequeños", precio: 499.99, disponible: true, descuento: true },
+                { id: 4, nombre: "PC Creator", descripcion: "Ordenador de alto rendimiento para creación de contenido", precio: 1899.99, disponible: false, descuento: false }
+            ];
 
-        const pcsConIva = pcs.map(pc=>({...pc, pcConIva: (pc.precio*ivaPc).toFixed(2)}));
+            const pcsConIva = pcs.map(pc => ({ ...pc, pcConIva: (pc.precio * ivaPc).toFixed(2)}));
 
-        const contPcs = document.querySelector('.contenedor-pcs');
+            const contPcs = document.querySelector('.contenedor-pcs');
 
-        pcsConIva.forEach(({ id, nombre, descripcion, precio, disponible, pcConIva, descuento}) => {
-            const tarjeta = document.createElement('article');
-            tarjeta.classList.add('tarjeta');
+            pcsConIva.forEach(({ id, nombre, descripcion, precio, disponible, pcConIva, descuento }) => {
+                const tarjeta = document.createElement('article');
+                tarjeta.classList.add('tarjeta');
 
-            tarjeta.innerHTML = `
+                tarjeta.innerHTML = `
                 <h3>${nombre}</h3>
                 <p>${descripcion}</p>
                 <p>${precio} € / ${pcConIva}</p>
@@ -108,12 +108,12 @@
                 ${descuento ? '<div class="descuento">¡Descuento!</div>' : '<div></div>'}
             `;
 
-            contPcs.appendChild(tarjeta);
-        });
+                contPcs.appendChild(tarjeta);
+            });
 
-    </script>
+        </script>
     </section>
-    
+
 </body>
 
 </html>

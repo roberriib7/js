@@ -1,0 +1,11 @@
+<script>
+    const casas = [
+        {casa: "casa", precio: 10},
+        {casa: "piso", precio: 30},
+        {casa: "apa", precio: 50}
+    ]
+
+    const filtro = casas.filter(precio => precio>10);
+    const casasComision = filtro.map(({precio}) => precio*0.03)
+
+</script>

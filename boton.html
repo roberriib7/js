@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 class="numero">0</h1>
+    <button class="btn-restar">-1</button>
+    <button class="btn-sumar">+1</button>
+    <script>
+        const botonRestar = document.querySelector('.btn-restar');
+        const botonSumar = document.querySelector('.btn-sumar');
+        const numero = document.querySelector('.numero')
+        let contador = 0;
+
+        function renderezar() {
+            numero.textContent = contador
+        }
+
+        botonRestar.addEventListener('click', () => {
+            contador--;
+            console.log(contador);
+            renderezar()
+            if (contador = 0) {
+                contador = 0;
+                
+            }
+        })
+
+        botonSumar.addEventListener('click', () => {
+            contador++;
+            console.log(contador);
+            renderezar()
+        })
+    </script>
+</body>
+
+</html>
