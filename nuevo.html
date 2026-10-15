@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicios JS</title>
+</head>
+
+<body>
+
+    <!-- ============================================================
+         PARTE HTML PARA EL SCRIPT 2 (lista de precios + botones)
+         ============================================================ -->
+
+    <h2>Lista de precios</h2>
+
+    <!-- Los 3 botones. Cada uno tiene un id para poder encontrarlo desde JS -->
+    <button id="btn-original">Original</button>
+    <button id="btn-asc">Menor a mayor</button>
+    <button id="btn-desc">Mayor a menor</button>
+
+    <!-- Lista vacía: JS la va a rellenar con los precios -->
+    <ul class="lista"></ul>
+
+
+    <!-- ============================================================
+         SCRIPT 1: REDUCE (sumar elementos de un array)
+         Para ver los resultados: abre la consola (F12 -> Console)
+         ============================================================ -->
+    <script>
+        // Un array de números normales
+        const numeros = [5, 10, 15, 20]
+
+        // Un array de objetos. Cada objeto tiene un nombre y un precio
+        const productos = [
+            { nombre: 'manzana', precio: 10 },
+            { nombre: 'pera', precio: 15 }
+        ]
+
+        // ---------- Sumar los números ----------
+        // reduce recorre el array y lo "reduce" a UN solo valor.
+        // Recibe dos cosas:
+        //   1) una función con (acumulador, numero)
+        //        - acumulador = el total que llevamos hasta ahora
+        //        - numero     = el elemento del array que toca en esta vuelta
+        //   2) el valor inicial del acumulador (aquí 0)
+        const sumaNumeros = numeros.reduce(function (acumulador, numero) {
+            return acumulador + numero
+        }, 0)
+
+        // Vueltas: 0+5=5 -> 5+10=15 -> 15+15=30 -> 30+20=50
+        console.log("Suma de números:", sumaNumeros) // 50
+
+        // ---------- Sumar los precios de los productos ----------
+        // Igual que antes, pero ahora cada elemento es un objeto (producto),
+        // así que sumamos producto.precio en vez del elemento entero.
+        const sumaPrecios = productos.reduce(function (acumulador, producto) {
+            return acumulador + producto.precio
+        }, 0)
+
+        // Vueltas: 0+10=10 -> 10+15=25
+        console.log("Suma de precios:", sumaPrecios) // 25
+    </script>
+
+
+    <!-- ============================================================
+         SCRIPT 2: LISTA DE PRECIOS CON ORDENACIÓN
+         ============================================================ -->
+    <script>
+        // Los datos originales (nunca los vamos a modificar)
+        const precios = [25, 180, 15, 950, 45]
+
+        // Variable que recuerda cómo hay que mostrar la lista ahora mismo.
+        // Puede valer: "original", "asc" o "desc"
+        let orden = "original"
+
+        // Buscamos en el HTML la lista <ul class="lista">
+        // El punto (.) significa "busca por clase"
+        const lista = document.querySelector(".lista")
+
+        // Buscamos los botones por su id
+        // La almohadilla (#) significa "busca por id"
+        const botonOriginal = document.querySelector("#btn-original")
+        const botonAsc = document.querySelector("#btn-asc")
+        const botonDesc = document.querySelector("#btn-desc")
+
+
+        // Esta función dibuja la lista en pantalla según el valor de "orden"
+        function mostrarLista() {
+
+            // Empezamos con los precios tal cual están
+            let preciosAMostrar = precios
+
+            if (orden === "asc") {
+                // [...precios] hace una COPIA del array.
+                // Es necesario porque sort() modifica el array sobre el que se usa,
+                // y no queremos estropear el original.
+                // (a, b) => a - b  ordena de menor a mayor
+                preciosAMostrar = [...precios].sort((a, b) => a - b)
+
+            } else if (orden === "desc") {
+                // (a, b) => b - a  ordena de mayor a menor (al revés)
+                preciosAMostrar = [...precios].sort((a, b) => b - a)
+            }
+
+            // Vaciamos la lista para no duplicar elementos cada vez que dibujamos
+            lista.innerHTML = ""
+
+            // Recorremos cada precio y creamos un <li> para él
+            preciosAMostrar.forEach(function (precio) {
+                const item = document.createElement("li") // crea un <li> vacío
+                item.textContent = "$" + precio           // le ponemos el texto, ej: "$25"
+                lista.appendChild(item)                   // lo metemos dentro del <ul>
+            })
+        }
+
+
+        // ---------- Eventos de los botones ----------
+        // Estos van FUERA de la función mostrarLista, se registran una sola vez.
+        // addEventListener("click", ...) = "cuando hagan click, ejecuta esto"
+
+        botonOriginal.addEventListener("click", function () {
+            orden = "original"  // cambiamos el estado
+            mostrarLista()      // volvemos a dibujar la lista
+        })
+
+        botonAsc.addEventListener("click", function () {
+            orden = "asc"
+            mostrarLista()
+        })
+
+        botonDesc.addEventListener("click", function () {
+            orden = "desc"
+            mostrarLista()
+        })
+
+        // Dibujamos la lista una vez al cargar la página,
+        // para que no aparezca vacía hasta pulsar un botón
+        mostrarLista()
+    </script>
+
+</body>
+
+</html>
