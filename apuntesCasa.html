@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button class="botonFiltro">Boton Filtrar</button>
+    <input class="barra" type="text" placeholder="escribe" />
+    <div class="root"></div>
+
+    <script>
+      const productos = [
+        {
+          nombre: "Auriculares inalámbricos",
+          precio: 49.99,
+          descripcion: "Auriculares Bluetooth con cancelación de ruido.",
+        },
+        {
+          nombre: "Mochila urbana",
+          precio: 35.5,
+          descripcion: "Mochila resistente con compartimento para portátil.",
+        },
+        {
+          nombre: "Botella reutilizable",
+          precio: 18.0,
+          descripcion: "Botella de acero inoxidable de 750 ml.",
+        },
+      ];
+      //filtre un array de products y lo rendereza, una funcion paar filtar y orta para renderizar, que sea menor a 100 euros
+
+      const botonFiltro = document.querySelector(".botonFiltro");
+
+      const padre = document.querySelector(".root");
+
+      function renderizar(array) {
+        padre.innerHTML = "";
+        array.forEach(({ nombre, precio, descripcion }) => {
+          const producto = document.createElement("article");
+          producto.classList.add("producto");
+
+          producto.innerHTML = `
+                <h3>${nombre}</h3>
+                <p>Precio: ${precio}</p>
+                <p>${descripcion}</p>
+            `;
+          padre.appendChild(producto);
+        });
+      }
+      renderizar(productos);
+
+      botonFiltro.addEventListener("click", () => {
+        filtrado(productos);
+      });
+
+      function filtradoMayor(array, contenido) {
+        const arrayFiltrado = array.filter(({ precio }) => precio > contenido);
+        renderizar(arrayFiltrado);
+      }
+
+      function filtradoMenor(array, contenido) {
+        const arrayFiltrado = array.filter(({ precio }) => precio < contenido);
+        renderizar(arrayFiltrado);
+      };
+
+      function filtradoPorNombre(array, contenido){
+        const arrayFiltrado = array.filter(({nombre}) => nombre.toLowerCase().includes(contenido));
+        renderizar(arrayFiltrado);
+      };
+
+      const barraBusqueda = document.querySelector(".barra");
+
+    //   barraBusqueda.addEventListener("input", () => {
+    //     const contenido = barraBusqueda.value;
+    //     filtrado(productos, contenido);
+    //   });
+
+      barraBusqueda.addEventListener("input", (e) => {
+        filtradoMayor(productos, e.target.value)
+      });
+
+      barraBusqueda.addEventListener('input', (e) =>{
+        filtradoMenor(productos, e.target.value)
+      });
+
+      barraBusqueda.addEventListener('input', (e)=>{
+        filtradoPorNombre(productos, e.target.value.toLowerCase())
+      });
+
+    //tarea: esto con 3 imputs: filtro por nombre, filtro por categoria, precio minimo
+
+
+
+      
+    </script>
+  </body>
+</html>
