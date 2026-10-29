@@ -88,6 +88,12 @@
         filtradoPorNombre(productos, e.target.value.toLowerCase())
       });
 
+      //explicacion para lo de e, en este caso e.target.value sustituye a contenido, contenido se saca sacando con value el contenido escrito en la barra
+      // pues lo que hacemos es que e, es literalmente el evento, en este caso un input, escribit en la barra
+      //a ese e le sumamos un target, q es por asi decirlo donde se ejecuta el evento, en este caso la barra de tareas
+      //y luego como lo que queremos es el valor de lo q se escribe, lo sacamos con value
+      //por lo que contenido.value === e.target.value
+
     //tarea: esto con 3 imputs: filtro por nombre, filtro por categoria, precio minimo
 
 
