@@ -7,7 +7,14 @@
   </head>
   <body>
     <button class="botonFiltro">Boton Filtrar</button>
-    <input class="barra" type="text" placeholder="escribe" />
+    <input class="barra" type="text" placeholder="escribe el nombre" />
+    <input class="bNumeros" type="text" placeholder="escribe el maximo">
+    <input class="bMenor" type="text" placeholder="escribe el minimo">
+
+    <button class="botonC1">Electrónica</button>
+    <button class="botonC2">Accesorios</button>
+    <button class="botonC3">Hogar</button>
+    <button class="botonC4">Ropa</button>
     <div class="root"></div>
 
     <script>
@@ -16,16 +23,37 @@
           nombre: "Auriculares inalámbricos",
           precio: 49.99,
           descripcion: "Auriculares Bluetooth con cancelación de ruido.",
+          categoria: "Electrónica",
         },
         {
           nombre: "Mochila urbana",
           precio: 35.5,
           descripcion: "Mochila resistente con compartimento para portátil.",
+          categoria: "Accesorios",
         },
         {
           nombre: "Botella reutilizable",
           precio: 18.0,
           descripcion: "Botella de acero inoxidable de 750 ml.",
+          categoria: "Hogar",
+        },
+        {
+          nombre: "Lámpara de escritorio LED",
+          precio: 27.99,
+          descripcion: "Lámpara LED con intensidad regulable.",
+          categoria: "Hogar",
+        },
+        {
+          nombre: "Teclado inalámbrico",
+          precio: 42.0,
+          descripcion: "Teclado compacto con conexión Bluetooth.",
+          categoria: "Electrónica",
+        },
+        {
+          nombre: "Gorra deportiva",
+          precio: 16.5,
+          descripcion: "Gorra ligera para actividades al aire libre.",
+          categoria: "Ropa",
         },
       ];
       //filtre un array de products y lo rendereza, una funcion paar filtar y orta para renderizar, que sea menor a 100 euros
@@ -36,7 +64,7 @@
 
       function renderizar(array) {
         padre.innerHTML = "";
-        array.forEach(({ nombre, precio, descripcion }) => {
+        array.forEach(({ nombre, precio, descripcion, categoria }) => {
           const producto = document.createElement("article");
           producto.classList.add("producto");
 
@@ -44,6 +72,7 @@
                 <h3>${nombre}</h3>
                 <p>Precio: ${precio}</p>
                 <p>${descripcion}</p>
+                <p>${categoria}</p>
             `;
           padre.appendChild(producto);
         });
@@ -70,23 +99,71 @@
       };
 
       const barraBusqueda = document.querySelector(".barra");
+      const barraNumeros = document.querySelector(".bNumeros");
+      const barraMenor = document.querySelector(".bMenor");
+
+      const botonElectronica = document.querySelector('.botonC1');
+      const botonAccesorios = document.querySelector('.botonC2');
+      const botonHogar = document.querySelector('.botonC3');
+      const botonRopa = document.querySelector('.botonC4');
+
+      function filtradoElectronica(array, buscar){
+        const arrayElectronica = array.filter(({categoria}) => categoria.toLowerCase().includes(buscar.toLowerCase()))
+        renderizar(arrayElectronica)
+      };
+
+      function filtradoAccesorios(array, buscar){
+        const arrayAccesorios = array.filter(({categoria}) => categoria.toLowerCase().includes(buscar.toLowerCase()))
+        renderizar(arrayAccesorios)
+      };
+
+      function filtradoHogar(array, buscar){
+        const arrayHogar = array.filter(({categoria}) => categoria.toLowerCase().includes(buscar.toLowerCase()))
+        renderizar(arrayHogar)
+      };
+
+      function filtradoRopa(array, buscar){
+        const arrayRopa = array.filter(({categoria}) => categoria.toLowerCase().includes(buscar.toLowerCase()))
+        renderizar(arrayRopa)
+      };
+
+      botonElectronica.addEventListener('click', (e) =>{
+        filtradoElectronica(productos, e.target.textContent)
+      });
+
+      botonAccesorios.addEventListener('click', (e) =>{
+        filtradoAccesorios(productos, e.target.textContent)
+      });
+
+      botonHogar.addEventListener('click', (e) =>{
+        filtradoHogar(productos, e.target.textContent)
+      });
+
+      botonRopa.addEventListener('click', (e) =>{
+        filtradoRopa(productos, e.target.textContent)
+      });
+
+      
+    
 
     //   barraBusqueda.addEventListener("input", () => {
     //     const contenido = barraBusqueda.value;
     //     filtrado(productos, contenido);
     //   });
 
-      barraBusqueda.addEventListener("input", (e) => {
+      barraNumeros.addEventListener("input", (e) => {
         filtradoMayor(productos, e.target.value)
       });
 
-      barraBusqueda.addEventListener('input', (e) =>{
+      barraMenor.addEventListener('input', (e) =>{
         filtradoMenor(productos, e.target.value)
       });
 
       barraBusqueda.addEventListener('input', (e)=>{
         filtradoPorNombre(productos, e.target.value.toLowerCase())
       });
+
+
 
       //explicacion para lo de e, en este caso e.target.value sustituye a contenido, contenido se saca sacando con value el contenido escrito en la barra
       // pues lo que hacemos es que e, es literalmente el evento, en este caso un input, escribit en la barra
